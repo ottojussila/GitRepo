@@ -1,24 +1,25 @@
-﻿namespace HelloWorld
+﻿namespace HelloWorld;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public MainPage()
     {
-        int count = 0;
+        InitializeComponent();
+    }
 
-        public MainPage()
+    private void OnButtonClicked(object sender, EventArgs e)
+    {
+        string userName = NameEntry.Text;
+
+        if (string.IsNullOrWhiteSpace(userName))
         {
-            InitializeComponent();
+            Label.Text = "Syötä nimesi ensin!";
+            Label.TextColor = Colors.Red;
         }
-
-        private void OnCounterClicked(object? sender, EventArgs e)
+        else
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            Label.Text = $"Hello {userName}!";
+            Label.TextColor = Colors.Green;
         }
     }
 }
